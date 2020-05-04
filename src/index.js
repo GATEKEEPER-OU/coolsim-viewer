@@ -1,6 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
+import React from "react";
+import ReactDOM from "react-dom";
+import PropTypes from "prop-types";
+import './styles/tailwind.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
