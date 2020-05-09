@@ -7,7 +7,6 @@ PouchDb.plugin(Find);
 
 
 
-
 export default class Agent{
     constructor(){
         this.store = new PouchDb("http://localhost:5985/agent-logs");
@@ -28,6 +27,24 @@ export default class Agent{
         });
     }
 
+    async state(){
+        return new Promise((resolve,reject)=> {
+            this.store.createIndex({
+                index: {fields: ['date']}
+            }).then(()=>{
+                this.store.find({
+                    selector: {
+                        // agent: {$eq: this.id},
+                        date: {$exists: true}
+                    },
+                    sort: [{'date':"desc"}],
+                    limit: 1
+                }).then(
+                    response => resolve(response.docs[0])
+                ).catch(err => reject(err));
+            })
+        });
+    }
 
     async description(params) {
         return new Promise((resolve,reject) => {

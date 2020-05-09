@@ -1,7 +1,9 @@
 import React from 'react';
+import './styles/tailwind.css';
 import logo from './logo.svg';
 import Description from "./agent/description.js";
-import './styles/tailwind.css';
+
+
 
 
 

@@ -1,0 +1,48 @@
+.none, .active{
+    color:darkgreen;
+}
+.light, .independent{
+    color:darkgreen;
+}
+.mild, .dependent{
+    color:darkorange;
+}
+.critical{
+    color:darkred;
+}
+.death {
+    color:black;
+}
+
+.male {
+    color:darkcyan;
+}
+.female {
+    color:darkmagenta;
+}
+
+.condition-box-list {
+    margin-block-start: 1em;
+}
+
+.conditions-box ul, .conditions-box ul li {
+    list-style:disc;
+    margin-left:1em;
+}
+ul.conditions, ul.conditions li {
+    display: inline;
+    margin-left:0;
+}
+.condition, .status, .gender{
+    font-weight:bold;
+}
+
+
+ul.conditions li:not(:nth-child(1)) .comma:before {
+    color:black;
+    content: ", ";
+}
+
+li.conditions-list {
+    line-height: 0.9em;
+}
