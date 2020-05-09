@@ -22,7 +22,11 @@ export default class Agent{
             this.store.allDocs({
                 include_docs:true
             }).then(
-                response => resolve(response.rows.map(e=>e.doc))
+                response => resolve(response.rows.reduce((p,e)=>{
+                    if(!e.doc.agent){return p}
+                    p.push(e.doc);
+                    return p;
+                },[]))
             ).catch(err => reject(err));
         });
     }

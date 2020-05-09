@@ -2,14 +2,6 @@ import Agent from "./agent.js";
 import React from "react";
 import State from "./state.js";
 
-// async function getLogs(a) {
-//     try {
-//         let logs = await a.logs();
-//         console.log("awaiting logs ",logs);
-//     }catch (err){
-//         console.error(err);
-//     }
-// }
 
 function capitalize(str){
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -76,7 +68,8 @@ function Description(){
     return (
 
 
-        <div className="grid grid-cols-12 gap-4">
+        <div className="sticky top-0 grid grid-cols-12 gap-4 bg-white shadow p-6"
+             style={{borderBottom:"1px solid lightGray"}}>
             {error ? "ERROR: couldn't load anything :(" : (
             <div className="col-span-5"
                 style={{textAlign:"right"}}>
@@ -91,7 +84,7 @@ function Description(){
                     </div>
                     <div className="text-sm">
                         { (gender) ? (
-                            <p className={`text-gray-600`}>
+                            <p>
                                 Gender: <span className={`${gender} gender`}>{capitalize(gender)}</span>
                             </p>
                         ): ""}

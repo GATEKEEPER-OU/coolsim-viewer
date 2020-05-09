@@ -11,48 +11,55 @@ function capitalize(str){
     return str.toString().charAt(0).toUpperCase() + str.slice(1);
 }
 
-function State({className}){
+function State({className = "", day = null,state = null}){
 
-    let [current,setCurrent] = React.useState(false);
+    let [currentState,setCurrent] = React.useState(state);
+    let [currentDay,setDay] = React.useState(day);
     let [error,setError] = React.useState(false);
 
+
     React.useEffect(()=> {
-        let a = new Agent();
-        if(!current) {
-            a.state().then(response => {
-                if (!response) {
-                    return
-                }
-                console.log("State", response);
-                setCurrent(response);
-                // console.log("description",description);
-            }).catch(
-                err => {
-                    console.error(err);
-                    setError(err);
-                }
-            );
+        if(!currentState) {
+            let a = new Agent();
+            if (!currentState) {
+                a.state().then(response => {
+                    if (!response) {
+                        return
+                    }
+                    console.log("State", response);
+                    setCurrent(response.state);
+                    setDay(response.day);
+                }).catch(
+                    err => {
+                        console.error(err);
+                        setError(err);
+                    }
+                );
+            }
         }
     });
+
 
 
     return (
       <div className={`max-w-sm w-full lg:max-w-full lg:flex ${className}`}>
           {
-              error ? (
+              !currentState ? (
                   "ERROR: sorry nothing to see :("
               ) : "" }
           {
-              current ? (
+              currentState ? (
                   <div className="mb-8 text-sm">
                       <p className="text-sm text-gray-600">
-                          Age of {current.state.age}
+                          {currentState.age ? "Age of "+currentState.age : "" }
                       </p>
-                      <div className="text-gray-900 font-bold text-xl mb-2">Recap at Day {current.day}</div>
-                      <p className="text-sm text-gray-600">
-                          Status: <span className={`${current.state.status.label} status comma`}>{capitalize(current.state.status.label)}</span>
+                      <div className="text-gray-900 font-bold text-xl mb-2">Recap at Day {currentDay}</div>
+                      <p className="text-sm">
+                          Status: <span className={`${currentState ? currentState.status.label : ""} status comma`}>
+                          {currentState ? capitalize(currentState.status.label) : ""}
+                          </span>
                       </p>
-                      <Conditions value={current.state.conditions}/>
+                      <Conditions value={currentState.conditions}/>
                   </div>) : ""
           }
       </div>

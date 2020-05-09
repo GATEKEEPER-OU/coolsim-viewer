@@ -1,4 +1,5 @@
 import React from "react";
+import Agent from "./agent";
 
 function capitalize(str){
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -9,7 +10,7 @@ function isGood(l){
 }
 
 function Condition(params){
-    console.log("condition",params);
+    // console.log("condition",params);
 
     const {label,severityLevel} = params;
     return(
@@ -22,7 +23,6 @@ function Condition(params){
 }
 
 function ListConditions({title,value}){
-
 
     return (
         <li className="conditions-list">{capitalize(title)+" "}
@@ -38,31 +38,46 @@ function ListConditions({title,value}){
 
 
 function Conditions({value}){
-    let {temporary, chronic, permanent} = value.reduce((partial,condition)=>{
 
-        // console.log(condition);
-        switch (condition.duration){
-            case "chronic":
-                partial.chronic.push(condition);
-                break;
-            case "permanent":
-                partial.permanent.push(condition);
-                break;
-            default:
-                partial.temporary.push(condition);
-        }
+    let [conditions,setConditions] = React.useState(false);
+    let [temporary,setTemporary] = React.useState(false);
+    let [chronic,setChronic] = React.useState(false);
+    let [permanent,setPermanent] = React.useState(false);
 
-        return partial;
+    React.useEffect(()=> {
 
-    },{temporary:[], chronic:[], permanent:[]});
+        if(!value || conditions){return}
+        // console.log("conditions",value);
+        setConditions(value);
 
-    console.log("aaaaaa",temporary, chronic, permanent);
+        let {temporary, chronic, permanent} = value.reduce((partial,condition)=>{
 
+            // console.log("condition",condition);
+            switch (condition.duration){
+                case "chronic":
+                    partial.chronic.push(condition);
+                    break;
+                case "permanent":
+                    partial.permanent.push(condition);
+                    break;
+                default:
+                    partial.temporary.push(condition);
+            }
+
+            return partial;
+
+        },{temporary:[], chronic:[], permanent:[]});
+
+        setChronic(chronic);
+        setPermanent(permanent);
+        setTemporary(temporary);
+
+    });
 
     return (
         <div className="conditions-box">
             Conditions
-            { !isGood(value) ?(
+            { isGood(conditions) ?(
                 <ul className="condition-box-list">
                     {isGood(temporary)?<ListConditions title="temporary" value={temporary}/>:""}
                     {isGood(chronic)?<ListConditions title="chronic" value={chronic}/>:""}

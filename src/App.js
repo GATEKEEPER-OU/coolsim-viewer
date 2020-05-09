@@ -2,7 +2,7 @@ import React from 'react';
 import './styles/tailwind.css';
 import logo from './logo.svg';
 import Description from "./agent/description.js";
-
+import Logs from "./agent/logs.js";
 
 
 
@@ -14,8 +14,9 @@ function App() {
 
 
   return (
-      <div className="App" style={{margin:20}} >
+      <div className="App">
           <Description/>
+          <Logs/>
       </div>
   );
 }

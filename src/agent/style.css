@@ -10,8 +10,8 @@
 .critical{
     color:darkred;
 }
-.death {
-    color:black;
+.death, .disabled {
+    color:gray;
 }
 
 .male {
@@ -23,6 +23,7 @@
 
 .condition-box-list {
     margin-block-start: 1em;
+    margin-block-end: 1em;
 }
 
 .conditions-box ul, .conditions-box ul li {
@@ -33,16 +34,37 @@ ul.conditions, ul.conditions li {
     display: inline;
     margin-left:0;
 }
-.condition, .status, .gender{
+.condition, .status, .gender, .data{
     font-weight:bold;
 }
 
 
-ul.conditions li:not(:nth-child(1)) .comma:before {
+li:not(:nth-child(1)) .comma:before, .comma:not(:nth-child(1)):before {
     color:black;
-    content: ", ";
+    content: ",";
+    margin-right:4px;
+}
+.comma.disabled:before {
+    color:gray;
 }
 
-li.conditions-list {
+li.conditions-list, .tight-p {
     line-height: 0.9em;
+}
+
+
+.log:nth-child(even){
+
+}
+.log:nth-child(odd){
+    background-color:#f5faf5;
+}
+
+
+ul.activities, ul.activities li {
+    list-style:none
+}
+ul.activities li {
+    display:inline-flex;
+    margin-left:0px;
 }
