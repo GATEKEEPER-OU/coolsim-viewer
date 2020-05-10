@@ -9,7 +9,7 @@ function Stats({stats = []}){
     // console.log("stats",stats);
 
     return (
-        <div>
+        <div className="text-sm">
             {Utils.isGood(stats) ? stats.map(s=><div className="tight-p" key={s.label}>
                 {Utils.capitalize(s.label)} <span className={`data ${Utils.levelToLabel(s.level)}`}>
                 {s.level.toFixed(2)*100}%
