@@ -3,6 +3,8 @@ import Agent from "./agent.js";
 import State from "./state.js";
 import Events from "./events.js"
 import Activities from "./activities.js";
+import Stats from "./stats.js";
+import * as Utils from "../utils.js";
 
 
 
@@ -18,14 +20,20 @@ function Log({log}) {
 
     return (
         <div className="grid grid-cols-12 gap-4 p-6 log">
-            <div className="col-span-5">
-                <Activities activities={activities}/>
-            </div>
-            <div className="col-span-2 text-center">
+            <div className="col-span-5 text-right">
                 <Events events={events}/>
             </div>
-            <div className="col-span-5">
-                <State day={day} state={state} stats={stats}></State>
+            <div className="col-span-2 text-center">
+                <p className="text-sm text-gray-600">
+                    Status
+                </p>
+                {state ? (<div className={`${state.status.label} data text-gray-900 font-bold text-xl mb-2`}>
+                    {Utils.capitalize(state.status.label)}
+                </div>) : ""}
+                <Stats className="text-sm" stats={stats}/>
+            </div>
+            <div className="col-span-5 text-left">
+                <Activities activities={activities}/>
             </div>
         </div>
     );

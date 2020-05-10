@@ -7,18 +7,18 @@ function Activity({list,type}) {
 
 
     let title = type === "actions" ? `Today, I did`: `I should but i couldn't`;
-    let classTitle = type === "actions" ? "none" : "critical";
-    let classList = type === "actions" ? "" : "";
+    let className = type === "actions" ? "none" : "critical";
     let activities = list.join(", ");
 
     return (
         <div>
-            <p className={`${classTitle} data activities`}>{title}</p>
+            <p className={`activities tight-p`}>{title+" "}
             {list ?
-                <p className={`${classList} tight-p`}>{activities}</p>
+                <span className={`${className} data`}>{activities}</span>
                 :(
-                <p>Nothing really...</p>
+                <span>Nothing really...</span>
             )}
+            </p>
         </div>
     )
 }
@@ -35,8 +35,7 @@ function Activities({activities}) {
     let spentTime = Utils.timeToString(time);
 
     return (
-        <div className="conditions-box text-sm mb-8"
-             style={{textAlign:"right"}}>
+        <div className="conditions-box text-sm mb-8">
             <p className="text-sm text-gray-600">
                 {spentTime}
             </p>
@@ -45,7 +44,6 @@ function Activities({activities}) {
             </div>
             <Activity list={actions} type="actions" time={time} />
             <Activity list={skips} type="skips" />
-            <Outcomes outcomes={outcomes}/>
         </div>
     )
 }

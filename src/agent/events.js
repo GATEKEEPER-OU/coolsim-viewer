@@ -24,12 +24,11 @@ function Events({events}) {
             </div>
             <div>
                 {intro}
-            <div>
-            {Utils.isGood(list) ? list.map(event=><div className="data" key={event}>{Utils.capitalize(event)}</div>) :
-                "Nothing really..."
-            }
-            </div>
-            <Outcomes outcomes={outcomes}/>
+                <div>
+                {Utils.isGood(list) ? list.map(event=><div className="data" key={event}>{Utils.capitalize(event)}</div>) :
+                    "Nothing really..."
+                }
+                </div>
             </div>
         </div>
     )

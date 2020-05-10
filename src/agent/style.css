@@ -50,6 +50,7 @@ li:not(:nth-child(1)) .comma:before, .comma:not(:nth-child(1)):before {
 
 li.conditions-list, .tight-p {
     line-height: 0.9em;
+    margin-bottom:0.4em
 }
 
 
