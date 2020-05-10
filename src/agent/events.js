@@ -4,6 +4,8 @@ import Outcomes from "./outcomes.js";
 
 function Events({events}) {
 
+    // console.log("events",events);
+
     let {time,list,outcomes} = events;
 
 
@@ -23,7 +25,7 @@ function Events({events}) {
             <div>
                 {intro}
             <div>
-            {Utils.isGood(list) ? list.map(event=><div className="data" key={event.label}>{Utils.capitalize(event.label)}</div>) :
+            {Utils.isGood(list) ? list.map(event=><div className="data" key={event}>{Utils.capitalize(event)}</div>) :
                 "Nothing really..."
             }
             </div>

@@ -5,7 +5,7 @@ import * as Utils from "../utils.js";
 function Outcome({outcome, type}){
 
     let outcomeClass = type === "positive" ? "none" : "critical";
-    let sign = type === "positive" ? "-" : "+";
+    let sign = type === "positive" ? "+" : "-";
     let list = Object.keys(outcome).reduce((p,v)=>{
         if(outcome[v] === 0){return p;}
         p.push({label:v,value:outcome[v]});
@@ -26,13 +26,22 @@ function Outcome({outcome, type}){
 
 function Outcomes({outcomes}) {
     let {positive,negative} = outcomes;
+    let error = false;
+
+    if( !Utils.isGood(positive.list) && !Utils.isGood(negative.list) ){
+        error=true;
+    }
 
     // console.log("Outcomes",positive,negative);
     return (
         <div>
-            Outcomes
-            <Outcome type="positive" outcome={positive}/>
-            <Outcome type="negative" outcome={negative}/>
+            <div className="data">Potential outcomes</div>
+            {error ? "Nothing really..." : (
+                <div>
+                    <Outcome type="positive" outcome={positive}/>
+                    <Outcome type="negative" outcome={negative}/>
+                </div>
+            )}
         </div>
     )
 }

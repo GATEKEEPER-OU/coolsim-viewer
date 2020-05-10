@@ -2,19 +2,19 @@ import React from "react";
 import '../styles/tailwind.css';
 import Agent from "./agent.js";
 import Conditions from "./conditions.js";
+import Stats from "./stats.js";
 import "./style.css"
-
-
 
 
 function capitalize(str){
     return str.toString().charAt(0).toUpperCase() + str.slice(1);
 }
 
-function State({className = "", day = null,state = null}){
+function State({className = "", day = null,state = null, stats = null}){
 
     let [currentState,setCurrent] = React.useState(state);
     let [currentDay,setDay] = React.useState(day);
+    let [currentStats,setStats] = React.useState(stats);
     let [error,setError] = React.useState(false);
 
 
@@ -26,9 +26,10 @@ function State({className = "", day = null,state = null}){
                     if (!response) {
                         return
                     }
-                    console.log("State", response);
+                    // console.log("State", response);
                     setCurrent(response.state);
                     setDay(response.day);
+                    setStats(response.state.stats);
                 }).catch(
                     err => {
                         console.error(err);
@@ -38,7 +39,6 @@ function State({className = "", day = null,state = null}){
             }
         }
     });
-
 
 
     return (
@@ -60,6 +60,7 @@ function State({className = "", day = null,state = null}){
                           </span>
                       </p>
                       <Conditions value={currentState.conditions}/>
+                      {currentStats ? (<Stats stats={currentStats} />) : ""}
                   </div>) : ""
           }
       </div>

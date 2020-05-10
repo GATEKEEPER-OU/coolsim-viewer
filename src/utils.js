@@ -19,3 +19,11 @@ export function timeToString(time) {
     let spentM = Math.floor((time - Math.floor(time))*60);
     return `${spentH} h and ${spentM} min`;
 }
+
+
+export function levelToLabel(level) {
+    if(level>0.66666666){return "light"}
+    if(level>0.33333333){return "mild"}
+    if(level>0){return "critical"}
+    return "none";
+}

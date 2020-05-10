@@ -13,6 +13,9 @@ function isGood(l){
 function Log({log}) {
 
     let {activities, date, day, events, state} = log;
+    let stats = state.stats;
+
+
     return (
         <div className="grid grid-cols-12 gap-4 p-6 log">
             <div className="col-span-5">
@@ -22,7 +25,7 @@ function Log({log}) {
                 <Events events={events}/>
             </div>
             <div className="col-span-5">
-                <State day={day} state={state}></State>
+                <State day={day} state={state} stats={stats}></State>
             </div>
         </div>
     );

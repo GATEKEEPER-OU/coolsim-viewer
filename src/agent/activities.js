@@ -3,19 +3,19 @@ import * as Utils from "../utils.js";
 import Outcomes from "./outcomes.js";
 
 
-function Activity({list,type, time}) {
+function Activity({list,type}) {
 
 
     let title = type === "actions" ? `Today, I did`: `I should but i couldn't`;
     let classTitle = type === "actions" ? "none" : "critical";
-    let classList = type === "actions" ? "" : "disabled";
-    let activities = list.map(activity=>activity.label).join(", ");
+    let classList = type === "actions" ? "" : "";
+    let activities = list.join(", ");
 
     return (
         <div>
             <p className={`${classTitle} data activities`}>{title}</p>
             {list ?
-                <p className={classList}>{activities}</p>
+                <p className={`${classList} tight-p`}>{activities}</p>
                 :(
                 <p>Nothing really...</p>
             )}
@@ -26,8 +26,6 @@ function Activity({list,type, time}) {
 
 
 function Activities({activities}) {
-
-
     // let [time,setTime] = React.useState(null);
 
 
