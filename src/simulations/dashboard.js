@@ -74,11 +74,11 @@ function Dashboard() {
     },[]);
 
     return (
-        <div>
-            <div className="mr-8 ml-8 mt-4 mb-4 max-w">
+        <div className="overflow-hidden p-6 w-full">
+            <div className="mb-6">
                 Simulation <span className="font-bold text-teal-700">{id}</span> including <span className="font-bold text-teal-700">{agents}</span> Agents and a Diary of <span className="font-bold text-teal-700">{diary.length}</span> days.
             </div>
-            <div className="flex flex-wrap">
+            <div className="flex flex-wrap -mx-2">
                 {diary.sort((a,b)=>(parseInt(a.day)>parseInt(b.day)) ? -1 : 1 ).map(d=>(
                     <Day key={d.day} value={d}/>
                 ))}

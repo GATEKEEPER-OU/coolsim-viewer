@@ -22,7 +22,7 @@ function App() {
   return (
       <Router>
           <div className="bg-teal-100 min-h-screen">
-              <nav className="flex items-center justify-between flex-wrap bg-teal-500 p-6">
+              <nav className="sticky z-10 shadow-md top-0 flex items-center justify-between flex-wrap bg-teal-500 p-6">
                   <div className="flex items-center flex-shrink-0 text-white mr-6">
                     <img style={{stroke:"white"}} className="text-white fill-current h-8 w-8 mr-2" width="54" height="54" src={logo}/>
                     <span className="font-semibold text-xl tracking-tight"><Link to="/">CoolSim</Link></span>
@@ -63,5 +63,10 @@ export default App;
 function Home(){
 
 
-    return (<Redirect to='/simulations' />)
+    return (
+        <div>
+            <Redirect to='/simulations' />
+        </div>
+
+    )
 }
